@@ -9,7 +9,7 @@ if(!jsStuff.utils){ jsStuff.utils = {}; }
 	var NodeUtil = function() {};
 	NodeUtil.prototype = {
 		wrap: function(p_holder, p_wrapper, p_content) {
-			var childFragment = new FragmentManager(p_holder.children().toArray());
+			var childFragment = new FragmentManager(p_holder.contents().toArray());
 		
 			p_holder.append(p_wrapper);
 			$(p_content || '.content:first', p_holder)
