@@ -2,9 +2,10 @@ if(!window.jsStuff){ var jsStuff = {utils:{}}; }
 if(!jsStuff.utils){ jsStuff.utils = {}; }
 
 /**
+ * Wrapper for creating and manipulating documentFragments.
  * @author Marcelo Miranda Carneiro - mcarneiro@gmail.com
  */
-;(function(scope, $){
+;(function(scope){
 
 	var FragmentManager = function(p_values) {
 			this.holder = document.createDocumentFragment();
@@ -39,4 +40,4 @@ if(!jsStuff.utils){ jsStuff.utils = {}; }
 	};
 	scope.FragmentManager = FragmentManager;
 
-})(jsStuff.utils, jQuery);
+})(jsStuff.utils);

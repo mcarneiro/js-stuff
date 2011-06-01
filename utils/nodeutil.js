@@ -2,6 +2,7 @@ if(!window.jsStuff){ var jsStuff = {utils:{}}; }
 if(!jsStuff.utils){ jsStuff.utils = {}; }
 
 /**
+ * Utilities for node elements
  * @author Marcelo Miranda Carneiro - mcarneiro@gmail.com
  */
 ;(function(scope, $, FragmentManager){

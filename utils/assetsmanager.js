@@ -2,6 +2,7 @@ if(!window.jsStuff){ var jsStuff = {utils:{}}; }
 if(!jsStuff.utils){ jsStuff.utils = {}; }
 
 /**
+ * Wrapper for finding a text fragment based on "pseudo-tags"
  * @author Marcelo Miranda Carneiro - mcarneiro@gmail.com
  */
 ;(function(scope){
