@@ -18,11 +18,8 @@ if(!jsStuff.navigation){ jsStuff.navigation = {}; }
 	
 	CarretControl.prototype = {
 		go: function(p_index) {
-			if(this.loop){
-				this.index = (p_index >= this.length) ? 0 : ((p_index < 0) ? this.length-1 : p_index);
-			}else{
-				this.index = (p_index >= this.length) ? this.length-1 : ((p_index < 0) ? 0 : p_index);
-			}
+			this.index = this.getNewIndex(p_index);
+
 			this._setPositionStatus();
 			this.evt.trigger('refresh', {
 				index: this.index,
@@ -38,6 +35,12 @@ if(!jsStuff.navigation){ jsStuff.navigation = {}; }
 		},
 		previous: function() {
 			this.go(this.index - 1);
+		},
+		getNewIndex: function(p_index) {
+			if(this.loop){
+				return (p_index >= this.length) ? 0 : ((p_index < 0) ? this.length-1 : p_index);
+			}
+			return (p_index >= this.length) ? this.length-1 : ((p_index < 0) ? 0 : p_index);
 		},
 		_setPositionStatus: function() {
 			if(!this.loop){
