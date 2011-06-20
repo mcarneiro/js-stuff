@@ -16,8 +16,19 @@ if(!jsStuff.utils){ jsStuff.utils = {}; }
 	var Delegate = function() {
 			this.cacheData = [];
 			this.cache = {};
-		}, single;
+		}, single,
+
+		// privates
+		_getIndexByString = function(p_data, p_item) {
+			for(var i=0, len=p_data.length; i < len; i++){
+				if(p_data[i] && p_data[i].toString() === p_item.toString()){
+					return i;
+				}
+			}
+			return -1;
+		};
 		Delegate.prototype = {
+			
 			_createCache: function(p_method, p_scope, p_params, p_sameArgsNum) {
 				var _this = this,
 					currentIndex = -1,
@@ -27,7 +38,12 @@ if(!jsStuff.utils){ jsStuff.utils = {}; }
 				ArrayUtil.forEach(Array.prototype.slice.call(arguments), function(i, item, arr){
 					
 					if(!_this.cacheData[i]){ _this.cacheData[i] = []; }
+
 					currentIndex = ArrayUtil.indexOf(_this.cacheData[i], item);
+					if(currentIndex < 0 && i === 0 && item){
+						currentIndex = _getIndexByString(_this.cacheData[i], item);
+					}
+
 					if(currentIndex < 0){
 						currentIndex = _this.cacheData[i].push(item) - 1;
 					}

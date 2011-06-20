@@ -1,13 +1,9 @@
-if(!window.jsStuff){ var jsStuff = {utils:{}}; }
+if(!window.utils){ var jsStuff = {utils:{}}; }
 if(!jsStuff.utils){ jsStuff.utils = {}; }
 
-/**
- * Wrapper for finding a text fragment based on "pseudo-tags"
- * @author Marcelo Miranda Carneiro - mcarneiro@gmail.com
- */
 ;(function(scope){
 
-	var AssetsManager = function(){},
+	var AssetsManager = function(){ },
 		Templates = function(p_source) {
 			this.original = p_source;
 			this.html = this.original;
@@ -15,7 +11,7 @@ if(!jsStuff.utils){ jsStuff.utils = {}; }
 		},
 		single = null;
 	AssetsManager.prototype = {
-		getTextFragment: function(p_name, p_source){
+		getFragment: function(p_name, p_source){
 			var rule = ['<'+p_name+'>','<\\/'+p_name+'>'],
 				matched = p_source
 					.match(new RegExp(rule[0]+'[\\s\\S]*?'+rule[1], 'gm')) || [],
@@ -45,6 +41,9 @@ if(!jsStuff.utils){ jsStuff.utils = {}; }
 				}
 			}
 			return returnObj;
+		},
+		getTemplateObject: function(p_name, p_source) {
+			return this.getTemplates(this.getFragment(p_name, p_source).shift());
 		}
 	};
 	Templates.prototype = {
